@@ -1,70 +1,24 @@
 import React from "react";
-import Users from "./components/users";
+
+import { Route, Switch, Redirect } from "react-router-dom";
+
+import Login from "./layouts/login";
+import Main from "./layouts/main";
+import Users from "./layouts/users";
+import NavBar from "./components/navBar";
 
 function App() {
-  // const [users, setUsers] = useState();
-  // useEffect(() => {
-  //   api.users.fetchAll().then((data) => setUsers(data));
-  // }, []);
-  // const handleDelete = (userId) => {
-  //   setUsers(users.filter((user) => user._id !== userId));
-  // };
-  // const handleToggleBookMark = (id) => {
-  //   setUsers(
-  //     users.map((user) => {
-  //       if (user._id === id) {
-  //         return { ...user, bookmark: !user.bookmark };
-  //       }
-  //       return user;
-  //     })
-  //   );
-  //   console.log(id);
-  // };
   return (
-    // <div>
-    //   {users && (
-    <Users
-    // onDelete={handleDelete}
-    // onToggleBookMark={handleToggleBookMark}
-    // users={users}
-    />
-    //   )}
-    // </div>
+    <div>
+      <NavBar />
+      <Switch>
+        <Route path="/users/:userId?" component={Users} />
+        <Route path="/login" component={Login} />
+        <Route path="/" exact component={Main} />
+        <Redirect to="/" />
+      </Switch>
+    </div>
   );
 }
 
 export default App;
-
-// import React, { useState } from "react";
-// import Users from "./components/users";
-
-// import api from "./api";
-
-// function App() {
-//   const [users, setUsers] = useState(api.users.fetchAll());
-//   const handleDelete = (userId) => {
-//     setUsers(users.filter((user) => user._id !== userId));
-//   };
-//   const handleToggleBookMark = (id) => {
-//     setUsers(
-//       users.map((user) => {
-//         if (user._id === id) {
-//           return { ...user, bookmark: !user.bookmark };
-//         }
-//         return user;
-//       })
-//     );
-//     console.log(id);
-//   };
-//   return (
-//     <div>
-//       <Users
-//         onDelete={handleDelete}
-//         onToggleBookMark={handleToggleBookMark}
-//         users={users}
-//       />
-//     </div>
-//   );
-// }
-
-// export default App;
